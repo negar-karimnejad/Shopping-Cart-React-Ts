@@ -51,7 +51,7 @@ function Cart({ isOpen }: CartProps) {
                 <CartItem key={item.id} {...item} />
               ))}
               <p className="font-bold text-xl text-right py-2">
-                Total:
+                Total:{" "}
                 {formatCurrency(
                   cartItems.reduce((total, cartItem) => {
                     const item = items.find((i) => i.id === cartItem.id);

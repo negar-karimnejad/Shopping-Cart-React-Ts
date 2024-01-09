@@ -7,14 +7,11 @@ function Navbar() {
   return (
     <div className="w-full bg-white h-16 shadow-sm sticky top-0">
       <div className="md:w-4/5 mx-auto h-full px-3 py-2 md:px-0 flex items-center justify-between">
-        <ul className="flex items-center h-full gap-5 text-lg font-semibold text-gray-500 ">
-          <li className="hover:text-gray-700">
-            <Link to="/">Home</Link>
+        <ul className="flex items-center h-full gap-5 text-lg font-semibold">
+          <li className="text-gray-500 hover:text-gray-700">
+            <Link to="/">Store</Link>
           </li>
-          <li className="hover:text-gray-700">
-            <Link to="/store">Store</Link>
-          </li>
-          <li className="hover:text-gray-700">
+          <li className="text-gray-500 hover:text-gray-700">
             <Link to="/about">About</Link>
           </li>
         </ul>
