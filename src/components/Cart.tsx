@@ -1,4 +1,6 @@
 import { useShoppingCart } from "../context/shoppingCartContext";
+import items from "../data/items.json";
+import formatCurrency from "../utilities/formatCurrency";
 import CartItem from "./CartItem";
 
 type CartProps = {
@@ -6,7 +8,7 @@ type CartProps = {
 };
 
 function Cart({ isOpen }: CartProps) {
-  const { closeCart, cartItems } = useShoppingCart();
+  const { closeCart, cartItems, cartQuantity } = useShoppingCart();
 
   return (
     <>
@@ -43,14 +45,26 @@ function Cart({ isOpen }: CartProps) {
               </svg>
             </div>
           </div>
-          <div className="flex flex-col gap-5 mt-10">
-            {cartItems.map((item) => (
-              <CartItem key={item.id} {...item} />
-            ))}
-            <p className="font-bold text-xl text-right py-2">
-              Total: $1,402,00
+          {cartQuantity > 0 ? (
+            <div className="flex flex-col gap-5 mt-10">
+              {cartItems.map((item) => (
+                <CartItem key={item.id} {...item} />
+              ))}
+              <p className="font-bold text-xl text-right py-2">
+                Total:
+                {formatCurrency(
+                  cartItems.reduce((total, cartItem) => {
+                    const item = items.find((i) => i.id === cartItem.id);
+                    return total + (item?.price || 0) * cartItem.quantity;
+                  }, 0)
+                )}
+              </p>
+            </div>
+          ) : (
+            <p className="text-xl font-bold text-center mt-10">
+              Your Shopping Cart is Empty!😢
             </p>
-          </div>
+          )}
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
-import { routes } from "./routes";
 import Navbar from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/shoppingCartContext";
+import { routes } from "./routes";
 
 function App() {
   const router = useRoutes(routes);

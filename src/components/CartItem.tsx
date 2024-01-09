@@ -1,5 +1,6 @@
-import formatCurrency from "../utilities/formatCurrency";
+import { useShoppingCart } from "../context/shoppingCartContext";
 import items from "../data/items.json";
+import formatCurrency from "../utilities/formatCurrency";
 
 type CartItemProps = {
   id: number;
@@ -7,6 +8,7 @@ type CartItemProps = {
 };
 
 function CartItem({ id, quantity }: CartItemProps) {
+  const { removeFromCart } = useShoppingCart();
   const item = items.find((i) => i.id === id);
   if (item == null) return null;
 
@@ -25,8 +27,13 @@ function CartItem({ id, quantity }: CartItemProps) {
         </div>
       </div>
       <div className="flex items-center gap-1">
-        <p className="text-lg font-medium">{formatCurrency(item.price)}</p>
-        <button className="w-5 h-5 border text-red-500 transition hover:bg-red-500 hover:text-white">
+        <p className="text-lg font-medium">
+          {formatCurrency(item.price * quantity)}
+        </p>
+        <button
+          onClick={() => removeFromCart(item.id)}
+          className="w-5 h-5 border text-red-500 transition hover:bg-red-500 hover:text-white"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
