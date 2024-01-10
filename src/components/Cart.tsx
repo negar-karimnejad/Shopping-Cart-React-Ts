@@ -22,7 +22,7 @@ function Cart({ isOpen }: CartProps) {
           onClick={(e) => e.stopPropagation()}
           className={`${
             isOpen ? "translate-x-0" : "translate-x-full"
-          } transition-all duration-500 ease-out bg-white w-96 absolute top-0 right-0 z-40 h-screen p-5`}
+          } transition-all duration-500 ease-out bg-white sm:w-96 w-5/6 absolute top-0 right-0 z-40 h-screen p-5`}
         >
           <div className="flex justify-between items-center">
             <h2 className="font-semibold text-3xl">Cart</h2>
