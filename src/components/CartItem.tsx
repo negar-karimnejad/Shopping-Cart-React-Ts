@@ -13,13 +13,15 @@ function CartItem({ id, quantity }: CartItemProps) {
   if (item == null) return null;
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex gap-1 items-center">
+    <div className="flex items-end sm:items-center justify-between">
+      <div className="flex gap-1 items-start sm:items-center">
         <img className="w-32 h-20 object-cover" src={item.imgUrl} alt="" />
         <div>
           <p className="text-lg font-medium">
             {item.name}{" "}
-            <span className="text-gray-500 text-sm">x{quantity}</span>
+            {quantity > 1 && (
+              <span className="text-gray-500 text-sm">x{quantity}</span>
+            )}
           </p>
           <p className="text-gray-500 font-medium">
             {formatCurrency(item.price)}
